@@ -16,9 +16,14 @@ pipeline{
             sh 'mvn compile'
                   }
                                   }
-        stage('MVN test'){
+        stage('MVN Code Quality'){
             steps{
             sh 'echo Sonarqube Code Quality Check Done'
+            }
+        }
+        stage('MVN test'){
+            steps{
+            sh 'mvn test'
             }
         }
         stage('MVN package'){
