@@ -34,7 +34,7 @@ pipeline{
 
         stage('Deploy'){
         steps{
-            sh 'build build -t devopsproject.jar .'
+            sh 'docker build -t devopsproject.jar .'
             }
         }
 
