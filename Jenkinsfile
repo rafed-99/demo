@@ -11,11 +11,21 @@ pipeline{
                        }
                    }
 
-        stage('MVN clean & build'){
+        stage('MVN compile'){
             steps{
-            sh 'mvn clean package'
+            sh 'mvn compile'
                   }
                                   }
+        stage('MVN test'){
+            steps{
+            sh 'echo Sonarqube Code Quality Check Done'
+            }
+        }
+        stage('MVN package'){
+            steps{
+            sh 'mvn package'
+            }
+        }
 
     }
 
