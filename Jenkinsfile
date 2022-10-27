@@ -32,6 +32,10 @@ pipeline{
             }
         }
 
+        stage('Deploy'){
+            sh 'build build -t devopsproject.jar .'
+        }
+
     }
 
 }
