@@ -1,4 +1,9 @@
 pipeline{
+environment {
+        registry = "rafedchraiti/testing"
+        registryCredential = 'dckr_pat_wadd9m36GOJGduKhbJig6Pf458Q'
+        dockerImage = ''
+    }
 
     agent any
     stages{
@@ -32,11 +37,28 @@ pipeline{
             }
         }
 
-        stage('Deploy'){
-        steps{
-            sh 'docker build -t devopsproject.jar .'
-            }
-        }
+        stage('Building our image') {
+                    steps {
+                        script {
+                            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                        }
+                    }
+                }
+
+                stage('Deploy our image') {
+                    steps {
+                        script {
+                            docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                                    }
+                        }
+                    }
+               }
+                stage('Cleaning up') {
+                    steps {
+                        sh "docker rmi $registry:$BUILD_NUMBER"
+                    }
+                }
 
     }
 
