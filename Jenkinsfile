@@ -23,7 +23,7 @@ environment {
                                   }
         stage('MVN Code Quality'){
             steps{
-            sh 'echo Sonarqube Code Quality Check Done'
+            sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=41120725'
             }
         }
         stage('MVN test'){
