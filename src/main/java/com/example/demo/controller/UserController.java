@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class UserController {
 
     @Autowired
@@ -16,8 +17,7 @@ public class UserController {
     @GetMapping("/retrieve-all-categorieProduit")
     @ResponseBody
     public List<User> getCategorieProduit() {
-        List<User> list = userService.retrieveAllCategorieProduits();
-        return list;
+        return userService.retrieveAllCategorieProduits();
     }
     @GetMapping("/retrieve-categorieProduit/{categorieProduit-id}")
     @ResponseBody
@@ -26,9 +26,8 @@ public class UserController {
     }
     @PostMapping("/add-categorieProduit")
     @ResponseBody
-    public User addCategorieProduit(@RequestBody User cp) {
-        User categorieProduit = userService.addCategorieProduit(cp);
-        return categorieProduit;
+    public User addCategorieProduit(@RequestBody User user) {
+        return userService.addCategorieProduit(user);
     }
     @DeleteMapping("/remove-categorieProduit/{categorieProduit-id}")
     @ResponseBody
@@ -37,7 +36,7 @@ public class UserController {
     }
     @PutMapping("/modify-categorieProduit")
     @ResponseBody
-    public User modifyCategorieProduit(@RequestBody User categorieProduit) {
-        return userService.updateCategorieProduit(categorieProduit);
+    public User modifyCategorieProduit(@RequestBody User user) {
+        return userService.updateCategorieProduit(user);
     }
 }
