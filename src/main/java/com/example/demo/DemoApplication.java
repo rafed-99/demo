@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 public class DemoApplication {
     @Bean
     public ModelMapper modelMapper(){
-
         return new ModelMapper();
     }
     public static void main(String[] args) {
